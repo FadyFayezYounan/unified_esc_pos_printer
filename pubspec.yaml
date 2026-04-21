@@ -40,8 +40,6 @@ flutter:
         pluginClass: UnifiedEscPosPrinterPlugin
       windows:
         pluginClass: UnifiedEscPosPrinterPluginCApi
-  assets:
-    - lib/resources/capabilities.json
 
 platforms:
   android:

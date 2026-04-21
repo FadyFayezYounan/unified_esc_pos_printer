@@ -1,6 +1,6 @@
 import 'dart:convert' show json;
 
-import 'package:flutter/services.dart' show rootBundle;
+import '../../../resources/capabilities_data.dart';
 
 List<Map<String, dynamic>> printProfiles = [];
 Map<String, dynamic> printCapabilities = {};
@@ -19,23 +19,16 @@ class CodePage {
 class CapabilityProfile {
   CapabilityProfile._internal(this.name, this.codePages);
 
-  /// Load and cache capabilities.json.
+  /// Load and cache capabilities from the bundled JSON data.
   ///
-  /// [path] overrides the default asset path (useful when embedding the
-  /// package or running outside of a Flutter app context).
-  /// [jsonString] bypasses asset loading entirely — pass raw JSON for unit
-  /// tests or non-Flutter environments.
+  /// [jsonString] bypasses the bundled data entirely — pass raw JSON for unit
+  /// tests or custom capability profiles.
   static Future<void> ensureProfileLoaded({
-    String? path,
     String? jsonString,
   }) async {
     if (printCapabilities.isNotEmpty) return;
 
-    final String content = jsonString ??
-        await rootBundle.loadString(
-          path ??
-              'packages/unified_esc_pos_printer/lib/resources/capabilities.json',
-        );
+    final String content = jsonString ?? capabilitiesJsonData;
 
     final dynamic decoded = json.decode(content);
     printCapabilities = Map<String, dynamic>.from(decoded as Map);
