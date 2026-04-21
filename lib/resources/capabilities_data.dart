@@ -3,7 +3,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 /// The raw JSON content of the bundled capabilities.json file.
-const String capabilitiesJsonData = """
+const String capabilitiesJsonData = r"""
 {
     "profiles": {
         "ZKP8001": {
